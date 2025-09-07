@@ -1,0 +1,11 @@
+Index: Simple Project.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Simple Project.py b/Simple Project.py
+--- a/Simple Project.py	(revision 2fe68aa699e9f4366ef452e23e2ac7ddd86a9d39)
++++ b/Simple Project.py	(date 1757157050466)
+@@ -1,0 +1,1 @@
++#
+\ No newline at end of file
