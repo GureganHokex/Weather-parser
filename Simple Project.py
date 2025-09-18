@@ -101,23 +101,23 @@ class WeatherParser:
         Красивый вывод информации о погоде
         """
         if not weather_data:
-            print("❌ Не удалось получить данные о погоде")
+            print(" Не удалось получить данные о погоде")
             return
             
         print("\n" + "="*50)
         title = weather_data['city'].upper()
         if 'country' in weather_data:
             title = f"{title}, {weather_data['country']}"
-        print(f"🌤️  ПОГОДА В {title}")
+        print(f"  ПОГОДА В {title}")
         print("="*50)
-        print(f"🌡️  Температура: {weather_data['temperature']}°C")
+        print(f"  Температура: {weather_data['temperature']}°C")
         if 'feels_like' in weather_data:
-            print(f"🤔 Ощущается как: {weather_data['feels_like']}°C")
-        print(f"☁️  Описание: {weather_data['description']}")
-        print(f"💧 Влажность: {weather_data['humidity']}%")
-        print(f"📊 Давление: {weather_data['pressure']} гПа")
-        print(f"💨 Ветер: {weather_data['wind_speed']} м/с")
-        print(f"🕐 Время: {weather_data['timestamp']}")
+            print(f" Ощущается как: {weather_data['feels_like']}°C")
+        print(f"  Описание: {weather_data['description']}")
+        print(f" Влажность: {weather_data['humidity']}%")
+        print(f" Давление: {weather_data['pressure']} гПа")
+        print(f" Ветер: {weather_data['wind_speed']} м/с")
+        print(f" Время: {weather_data['timestamp']}")
         print("="*50)
 
 
@@ -137,17 +137,17 @@ def get_location_by_ip():
                 'lon': data.get('lon')
             }
         else:
-            print("❌ Не удалось определить местоположение по IP")
+            print(" Не удалось определить местоположение по IP")
             return None
     except requests.exceptions.RequestException:
-        print("❌ Ошибка сети при определении местоположения")
+        print(" Ошибка сети при определении местоположения")
         return None
 
 def main():
     """
     Основная функция для демонстрации работы парсера
     """
-    print("🌤️  Добро пожаловать в парсер погоды!")
+    print("  Добро пожаловать в парсер погоды!")
     print("Для работы с реальными данными получите API ключ на openweathermap.org")
     print()
     
@@ -176,7 +176,7 @@ def main():
                 weather = parser.get_weather_by_city(city)
                 parser.display_weather(weather)
             else:
-                print("❌ Пожалуйста, введите название города")
+                print(" Пожалуйста, введите название города")
                 
         elif choice == '2':
             print("\n📍 Определяем ваше местоположение по IP...")
@@ -188,13 +188,13 @@ def main():
                 weather = parser.get_weather_by_coords(loc['lat'], loc['lon'], fallback_city=city)
                 parser.display_weather(weather)
             else:
-                print("❌ Не удалось определить местоположение. Попробуйте вариант с городом.")
+                print(" Не удалось определить местоположение. Попробуйте вариант с городом.")
 
         elif choice == '3':
-            print("👋 До свидания!")
+            print(" До свидания!")
             break
         else:
-            print("❌ Неверный выбор. Попробуйте снова.")
+            print(" Неверный выбор. Попробуйте снова.")
 
 if __name__ == "__main__":
     main()
