@@ -7,6 +7,8 @@ from datetime import datetime
 import time
 import os
 
+# NOTE: Core weather logic has been extracted to `weather_service.py` for reuse by web app.
+
 class WeatherParser:
     def __init__(self, api_key=None):
         """

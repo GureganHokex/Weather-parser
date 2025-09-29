@@ -1,3 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# OS/macOS
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# IDE
+.idea/
+.vscode/
+
+# Uvicorn/Watchfiles
+*.log
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

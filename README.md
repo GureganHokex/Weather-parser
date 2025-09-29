@@ -1,4 +1,4 @@
-# Парсер погоды (консольное приложение)
+# Погода: консоль и веб-приложение
 
 Консольное приложение для получения погоды:
 - по названию города
@@ -13,7 +13,7 @@
 pip install -r requirements.txt
 ```
 
-## Запуск
+## Запуск (консоль)
 
 ```bash
 python "Simple Project.py"
@@ -30,11 +30,75 @@ export OPENWEATHER_API_KEY=ВАШ_КЛЮЧ
 python "Simple Project.py"
 ```
 
+## Запуск (веб)
+
+1. Установите зависимости:
+```bash
+pip install -r requirements.txt
+```
+2. Запустите сервер:
+```bash
+uvicorn app.main:app --reload
+```
+3. Откройте `http://127.0.0.1:8000/` в браузере. Введите город или оставьте пустым для автоопределения по IP.
+
+### Переменные окружения и конфиденциальность
+
+- Файл `.env` не должен попадать в git (уже добавлен в `.gitignore`).
+- Пример файла окружения:
+  ```env
+  OPENWEATHER_API_KEY=ВАШ_КЛЮЧ
+  ```
+- Локально ключ можно положить в `.env` в корне проекта или экспортировать переменную окружения.
+
+### Публикация на GitHub (без секрета в репозитории)
+
+1. Инициализируйте репозиторий и сделайте первый коммит:
+   ```bash
+   cd /Users/danilgladikov/Weather-parser
+   git init
+   git add .
+   git commit -m "Initial web app"
+   ```
+2. Создайте пустой публичный репозиторий на GitHub и свяжите:
+   ```bash
+   git remote add origin https://github.com/USER/REPO.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+Секрет (`OPENWEATHER_API_KEY`) в репозиторий не коммитить. Храните его только локально или в настройках хостинга.
+
+### Деплой, чтобы "люди могли зайти и пользоваться"
+
+- Render.com (или Railway/Fly.io):
+  - Создайте новый веб-сервис из вашего GitHub репозитория
+  - Стартовая команда: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+  - Установите переменную окружения `OPENWEATHER_API_KEY`
+  - План: бесплатный (auto sleep) подойдёт для теста
+
+- Docker (опционально):
+  ```Dockerfile
+  FROM python:3.11-slim
+  WORKDIR /app
+  COPY requirements.txt .
+  RUN pip install --no-cache-dir -r requirements.txt
+  COPY . .
+  ENV PYTHONUNBUFFERED=1
+  CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+  ```
+  Запуск:
+  ```bash
+  docker build -t weather-web .
+  docker run -e OPENWEATHER_API_KEY=ВАШ_КЛЮЧ -p 8080:8080 weather-web
+  ```
+
 ## Возможности
 
 - Погода по городу: температура, «ощущается как», описание, влажность, давление, ветер, время
 - Погода по моему местоположению (IP): автоопределение города и координат
 - Аккуратные сообщения об ошибках на русском
+- Веб-интерфейс в стиле современной карточки (по мотивам Яндекс Погоды)
 
 ## Замечания
 

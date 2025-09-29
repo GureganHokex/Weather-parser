@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Погода</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <script>
+    // Автообновление раз в 2 минуты
+    setInterval(function(){
+      const url = new URL(window.location.href);
+      // добавим cache-busting параметр
+      url.searchParams.set('_t', Date.now());
+      window.location.replace(url.toString());
+    }, 120000);
+  </script>
+  <div class="container">
+    <header>
+      <h1>Погода</h1>
+      <form method="get" action="/">
+        <input type="text" name="q" placeholder="Введите город" value="{{ query }}"/>
+        <button type="submit">Найти</button>
+      </form>
+    </header>
+
+    {% if weather %}
+      <section class="card">
+        <div class="card-title">
+          <span class="city">{{ weather.city | upper }}</span>
+          {% if weather.country %}<span class="country">, {{ weather.country }}</span>{% endif %}
+        </div>
+        <div class="temp">{{ weather.temperature }}°C</div>
+        {% if weather.feels_like %}
+          <div class="feels">Ощущается как: {{ weather.feels_like }}°C</div>
+        {% endif %}
+        <div class="desc">{{ weather.description }}</div>
+        <div class="grid">
+          <div>
+            <div class="label">Влажность</div>
+            <div class="value">{{ weather.humidity }}%</div>
+          </div>
+          <div>
+            <div class="label">Давление</div>
+            <div class="value">{{ weather.pressure }} гПа</div>
+          </div>
+          <div>
+            <div class="label">Ветер</div>
+            <div class="value">{{ weather.wind_speed }} м/с</div>
+          </div>
+          <div>
+            <div class="label">Время</div>
+            <div class="value">{{ weather.timestamp }}</div>
+          </div>
+        </div>
+      </section>
+    {% else %}
+      <p class="muted">Введите город или позвольте определить местоположение.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
+
+
