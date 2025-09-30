@@ -51,24 +51,6 @@ uvicorn app.main:app --reload
   ```
 - Локально ключ можно положить в `.env` в корне проекта или экспортировать переменную окружения.
 
-### Публикация на GitHub (без секрета в репозитории)
-
-1. Инициализируйте репозиторий и сделайте первый коммит:
-   ```bash
-   cd /Users/danilgladikov/Weather-parser
-   git init
-   git add .
-   git commit -m "Initial web app"
-   ```
-2. Создайте пустой публичный репозиторий на GitHub и свяжите:
-   ```bash
-   git remote add origin https://github.com/USER/REPO.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-Секрет (`OPENWEATHER_API_KEY`) в репозиторий не коммитить. Храните его только локально или в настройках хостинга.
-
 ### Деплой, чтобы "люди могли зайти и пользоваться"
 
 - Render.com (или Railway/Fly.io):
