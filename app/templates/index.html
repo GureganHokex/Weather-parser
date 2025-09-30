@@ -29,6 +29,9 @@
     </header>
 
     {% if weather %}
+      {% if weather.source == 'mock' %}
+        <div class="notice">Показаны демонстрационные данные. Установите ключ OPENWEATHER_API_KEY для реальных данных.</div>
+      {% endif %}
       <section class="card">
         <div class="card-title">
           <span class="city">{{ weather.city | upper }}</span>

@@ -7,6 +7,7 @@ form{display:flex;gap:8px;flex:1;justify-content:flex-end}
 input[type="text"]{flex:1;min-width:200px;padding:10px 12px;border-radius:10px;border:1px solid #20304d;background:#0e1729;color:var(--text)}
 button{padding:10px 14px;border-radius:10px;background:var(--primary);border:none;color:#fff;font-weight:600;cursor:pointer}
 .card{background:var(--card);border:1px solid #20304d;border-radius:16px;padding:20px}
+.notice{background:#1f2b46;border:1px dashed #3b82f6;color:#cfe0ff;padding:10px 12px;border-radius:10px;margin-bottom:12px}
 .card-title{font-weight:700;margin-bottom:8px}
 .city{font-size:18px}
 .country{font-size:18px;color:var(--muted)}

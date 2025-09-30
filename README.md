@@ -47,7 +47,9 @@ uvicorn app.main:app --reload
 - Файл `.env` не должен попадать в git (уже добавлен в `.gitignore`).
 - Пример файла окружения:
   ```env
+  # Один из провайдеров (или оба)
   OPENWEATHER_API_KEY=ВАШ_КЛЮЧ
+  YANDEX_WEATHER_API_KEY=ВАШ_КЛЮЧ_ЯНДЕКС
   ```
 - Локально ключ можно положить в `.env` в корне проекта или экспортировать переменную окружения.
 
@@ -56,7 +58,7 @@ uvicorn app.main:app --reload
 - Render.com (или Railway/Fly.io):
   - Создайте новый веб-сервис из вашего GitHub репозитория
   - Стартовая команда: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-  - Установите переменную окружения `OPENWEATHER_API_KEY`
+  - Установите переменные окружения `OPENWEATHER_API_KEY` и/или `YANDEX_WEATHER_API_KEY`
   - План: бесплатный (auto sleep) подойдёт для теста
 
 - Docker (опционально):

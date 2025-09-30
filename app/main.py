@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
@@ -29,5 +30,18 @@ async def index(request: Request, q: Optional[str] = None) -> HTMLResponse:
         "index.html",
         {"request": request, "weather": weather, "query": q or ""},
     )
+
+
+@app.get("/api/weather", response_class=JSONResponse)
+async def api_weather(city: str) -> JSONResponse:
+    """
+    JSON API: получить погоду по городу
+    Пример: /api/weather?city=Москва
+    """
+    service = WeatherService()
+    data = service.get_weather_by_city(city)
+    if not data:
+        return JSONResponse({"error": "Не удалось получить данные"}, status_code=502)
+    return JSONResponse(data)
 
 
